@@ -1,0 +1,107 @@
+# MIF 2.1
+
+# -----------------------------------------------------------------------------
+
+set PI [expr {4 * atan(1.)}]
+set MU0 [expr {4 * $PI * 1e-7}]
+
+set LENGTH [expr {3e-6}]
+set WIDTH [expr {200e-9}]
+set THICKNESS [expr {3e-9}]
+set DX [expr {2e-9}]
+set DY [expr {2e-9}]
+set DZ [expr {3e-9}]
+
+set Ms [expr {0.658e6}]
+set A [expr {11.1e-12}]
+set D [expr {3e-3}]
+
+set BIAS_FIELD [expr {0.25}]
+
+# Periodicity
+Parameter a 100
+Parameter w 50
+set w1 [expr {$w}]
+set w2 [expr {$a - $w}]
+
+set ALPHA [expr {0.95}]
+set GAMMA [expr {2.21e5}]
+
+# -----------------------------------------------------------------------------
+
+proc periodicProc { p1 p2 x y z } {
+    set xn [expr {$x * 1e9}]
+    set yn [expr {$y * 1e9}]
+
+    set xr [expr {fmod($xn, double($p1 + $p2))}]
+
+    if {$xr < $p1 } {
+       return 2
+    } elseif { $xr >= $p1 && $xr <= ($p1 + $p2) } { 
+       return 1
+    } else {
+        return 0
+    }
+}
+
+Specify Oxs_ScriptAtlas:periodicAtlas [subst {
+    xrange {0e-9 $LENGTH}
+    yrange {0e-9 $WIDTH}
+    zrange {0e-9 $THICKNESS}
+    regions { nodmi dmi }
+    script_args { rawpt }
+    script { periodicProc $w1 $w2 }
+}]
+
+Specify Oxs_RectangularMesh:mesh [subst {
+  cellsize {$DX $DY $DZ}
+  atlas :periodicAtlas
+}]
+
+Specify Oxs_UniformExchange [subst {
+  A  $A
+}]
+
+Specify Oxs_Demag {}
+
+# Uniform DMI is used here
+Specify Oxs_DMExchange6Ngbr:DMI [subst {
+    default_D $D
+    atlas :periodicAtlas
+    D {
+        nodmi nodmi 0
+        dmi dmi $D
+        nodmi dmi $D
+  }
+}]
+
+Specify Oxs_FixedZeeman:extfield0 [subst {
+  comment {Field values in Tesla; scale to A/m}
+  multiplier [expr {1 / $MU0}]
+  field {0.0 $BIAS_FIELD 0.0}
+}]
+
+Specify Oxs_RungeKuttaEvolve [subst {
+  do_precess 1
+  gamma_LL $GAMMA
+  alpha $ALPHA
+  method rk4
+}]
+
+Specify Oxs_TimeDriver [subst {
+ basename InitialMagnetisation
+ stopping_time 5e-9
+ stopping_dm_dt 0.1
+ evolver Oxs_RungeKuttaEvolve
+ vector_field_output_format "text %.17g"
+ mesh :mesh
+ stage_count 1
+ Ms $Ms
+ m0 { 0.1 0.9 0.0 }
+}]
+
+Destination table mmArchive
+Destination mags mmArchive
+
+Schedule DataTable table Step 10
+Schedule Oxs_TimeDriver::Magnetization mags Stage 1
