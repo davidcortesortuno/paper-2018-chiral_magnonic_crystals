@@ -1,4 +1,5 @@
-SOMEVARIABLE=2
+#!/bin/bash
+
 # -----------------------------------------------------------------------------
 
 # Build the image using the Dockerfile parameters
@@ -22,15 +23,23 @@ run_simulations:
 		docker run -t -v `pwd`:/io -u `id -u`:`id -g` \
 		oommf /bin/bash -c "make"
 
-plot_nebm:
-	@echo "Plotting data from NEBM simulation with D = ${DMI}e-4 Jm**-2"
+generate_data:
+	@echo "Generating spatio-temporal data to generate the spin wave spectra"
+	@echo "------------------------------------------------------"
+	@cd ../sim && \
+		docker run -t -v `pwd`:/io -u `id -u`:`id -g` \
+		oommf /bin/bash -c "make data"
+
+plot_squared:
+	@echo "Plotting spectra with squared power scale"
 	@echo "------------------------------------------------------------"
-	@cd ../ && \
+	@cd ../sim && \
 		docker run -t -v `pwd`:/io -u `id -u`:`id -g` \
-		nebm /bin/bash -c "python plot/plot_energy_bands.py --method boundary --D_list ${DMI} --snapshots"
-	@cd ../ && \
+		oommf /bin/bash -c "make plots_squared"
+
+plot_logs:
+	@echo "Plotting spectra with log power scale"
+	@echo "------------------------------------------------------------"
+	@cd ../sim && \
 		docker run -t -v `pwd`:/io -u `id -u`:`id -g` \
-		nebm /bin/bash -c "python plot/plot_energy_bands.py --method linear_interpolations --D_list ${DMI} --snapshots"
-	@cd ../ && \
-		docker run -t -v `pwd`:/io -u `id -u`:`id -g` \
-		nebm /bin/bash -c "python plot/plot_energy_bands.py --method climbing --D_list ${DMI} --snapshots"
+		oommf /bin/bash -c "make plots_log"
