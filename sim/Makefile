@@ -1,19 +1,17 @@
-OOMMF="/home/david/opt/oommf-1.2a5bis/oommf.tcl"
-
 all:
 	make relaxation
 	make dynamics
 
 relaxation:
 	for w in 0 25 50 75 100; do \
-		tclsh $(OOMMF) boxsi -threads 4 -parameters "w $${w}" OOMMF_static.mif; \
+		oommf boxsi -threads 4 -parameters "w $${w}" OOMMF_static.mif; \
 		mv InitialMagnetisation-Oxs*.omf InitialMagnetisation_w$${w}.omf; \
 		mv InitialMagnetisation.odt InitialMagnetisation_w$${w}.odt; \
 	done
 
 dynamics:
 	for w in 0 25 50 75 100; do \
-		tclsh $(OOMMF) boxsi -threads 4 -parameters "w $${w} INIT_STATE InitialMagnetisation_w$${w}.omf" OOMMF_dynamics.mif; \
+		oommf boxsi -threads 4 -parameters "w $${w} INIT_STATE InitialMagnetisation_w$${w}.omf" OOMMF_dynamics.mif; \
 		mkdir -p omfs_w$${w}; \
 		mv SWDynamics*.omf omfs_w$${w}/; \
 	done
