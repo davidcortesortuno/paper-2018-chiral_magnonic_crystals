@@ -19,7 +19,7 @@ heavy metal wires `w_D`.
 The simulations are specified for the limiting case `a=w` which is a
 ferromagnet with periodic heavy metal wires on top, which induce a periodic
 interfacial DMI. Accordingly, the system is solely determined by `a` and the
-heavy metal widths `w_D`.
+heavy metal widths `w_D` (CHECK)
 
 For example, for a system with `a=100 nm`, if we specify the heavy metal widths
 as `w_D=a/2`, we obtain the pattern:
