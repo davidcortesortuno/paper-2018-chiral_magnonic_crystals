@@ -21,6 +21,15 @@ as `w_D=a/2`, we obtain the pattern:
 
 ![](images/simulation_system_a100nm_w50nm.png)
 
+Magnetic parameters of Py are:
+
+```
+    Ms = 0.658e6    MA/m
+    A  = 11.1e-12   J/m
+    D  = 3e-3       J/m^2  (this is variable and depends on the
+                            induced DMI from the heavy metal wire)
+```
+
 ## Simulations
 
 We use OOMMF to simulate the magnonic waveguides.
