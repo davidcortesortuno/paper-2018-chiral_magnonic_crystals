@@ -2,7 +2,9 @@
 
 This repository has all the necessary tools to reproduce the micromagnetic
 simulations from the publication: **Chiral Magnonic Crystals: Breaking the Spin
-Wave Symmetry with a Periodic Dzyaloshinskii-Moriya Interaction**
+Wave Symmetry with a Periodic Dzyaloshinskii-Moriya Interaction** from
+*R. A. Gallardo, D. Cortes-Ortuno, T. Schneider, A. Roldan-Molina,
+Fusheng Ma, J. Lindner, H. Fangohr and P. Landeros*.
 
 ## System
 
