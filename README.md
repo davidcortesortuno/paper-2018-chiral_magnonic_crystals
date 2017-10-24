@@ -26,8 +26,12 @@ as `w_D=a/2`, we obtain the pattern:
 
 ## Simulations
 
+We use OOMMF to simulate the magnonic waveguides.
+
 In our study, we fix the periodicity to a value of `a=100 nm` and we set
-different heavy metal widths `w_D` of `a`, `a/2`, `a/4` and 0.
+different heavy metal widths `w_D` of `a`, `a/2`, `a/4` and `0` (these
+parameters can be changed from the OOMMF scripts in `sim` through the
+`a` and `w` parameters).
 
 The first step in the simulations is to relax the sample with a strong magnetic
 field of `B=0.25 T` to saturate the magnetisation along the `y` direction,
@@ -49,7 +53,10 @@ exponentially grows damping towards the width edges as shown in:
 ![](images/exponential_damping_along_width.png)
 
 By setting the damping in this way, we can obtain clearer images of the
-spin wave spectrum of the system.
+spin wave spectrum of the system by avoiding reflection of the spin
+waves at the boundary. In our system, a significant noise comes from the
+width edges rather from the edges at the extremes of the long side of
+the stripe.
 
 ## Spectrum
 
@@ -64,7 +71,7 @@ intensity.
 If Docker is installed in your system, all the simulations and data processing 
 scripts can be run automatically run using
 
-```
+```bash
     make run_all
 ```
 
@@ -72,4 +79,19 @@ This command builds a Docker container using the `joommf/oommf` image,
 runs the simulations in the `sim` folder and generates the data using
 the scripts in the `data_plot` folder.
 
+# Cite
+
+If you want to cite this repository you can do it using this bibtex entry:
+
+```
+    Some citation
+```
+
 # References
+
+[] Paper
+
+[] Venkat et al., *Mesh Size and Damped Edge Effects in Micromagnetic Spin Wave
+Simulation*. Preprint at arXiv:1405.4615 (2014).
+
+[]
