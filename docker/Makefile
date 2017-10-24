@@ -17,7 +17,7 @@ clean_images:
 # -u is to run as user:group so files are not owned by root (somehow it is
 # important to run the commands with -t) 
 run_simulations:
-	@echo "Starting relaxation of stripes with variable DMI periodicity"
+	@echo "Starting relaxation and excitation of stripes with variable DMI periodicity"
 	@echo "------------------------------------------------------"
 	@cd ../sim && \
 		docker run -t -v `pwd`:/io -u `id -u`:`id -g` \
