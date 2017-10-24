@@ -1,9 +1,7 @@
 from __future__ import print_function
 
-import spectrum
+# import spectrum
 import numpy as np
-# from fidimag.micro import Sim
-# from fidimag.common import CuboidMesh
 import os
 from os import listdir
 import re
@@ -117,8 +115,6 @@ times_filter, x_filter = (window_f(len(times)),
 #                           spectrum.window_lanczos(len(x))
 #                           )
 
-print(data.shape)
-
 w1, w2 = np.meshgrid(x_filter, times_filter)
 window = w1 * w2
 data = data * window
@@ -151,8 +147,6 @@ k = np.fft.fftshift(k) * 2 * np.pi
 
 f = plt.figure()
 ax = f.add_subplot(111)
-# print('Limits: ', np.max(fft_data ** 2), np.min(fft_data ** 2))
-print('Squared data limits: ', np.max(fft_data ** 2), np.min(fft_data ** 2))
 
 if args.scale == 'log10':
     fft_data = np.log10(fft_data ** 2)
@@ -168,13 +162,9 @@ cbmin = fft_data.min() / args.vminf
 print('Spectra limits: ', cbmin, cbmax)
 
 p = ax.imshow(fft_data,
-              # vmax=10, vmin=0,
               vmin=cbmin, vmax=cbmax,
               # cmap='viridis',
               cmap=args.colormap,
-              # cmap=npf_cm.softrbw_mpl_r,
-              # extent=[np.min(k), np.max(k),
-              #         np.min(freqs), np.max(freqs)],
               extent=[k[0], k[-1],
                       freqs[0], freqs[-1]],
               aspect='auto',
@@ -194,21 +184,9 @@ plt.xlabel(r'$k$  [ rad/nm ]')
 plt.ylabel(r'$f$  [ GHz ]')
 
 xs = [0, -np.pi / 50, np.pi / 50, -np.pi / 100, np.pi / 100]
-# for x in xs:
-#     plt.axvline(x=x, color='b', linestyle='--')
-
-# plt.pcolormesh(k, freqs, 10 * np.log10(fft_data ** 2),
-#                vmin=cbmin, vmax=cbmax, cmap='viridis')
-
-# Analytical data
-# for i in range(1, 4):
-#     data = np.loadtxt('DMI{}a01a.dat'.format(i))
-#     plt.plot(data[:, 0] * 1e-3, data[:, 1], '--', color='orange', lw=1.8)
 
 if not args.pdf_name:
     args.pdf_name = 'spectra' + out_name
 
 plt.savefig(args.pdf_name + '.pdf', bbox_inches='tight')
 # plt.savefig('spectra.jpg')
-
-plt.show()

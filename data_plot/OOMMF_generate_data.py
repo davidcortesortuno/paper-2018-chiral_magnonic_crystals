@@ -38,6 +38,7 @@ Ms = args.Ms
 
 
 def key_f(f):
+    """ A regex filter to sort omf files """
     regex_res = re.search(r'(?<=Magnetization\-)[0-9]+(?=\-)', f).group(0)
     return regex_res
 
@@ -52,6 +53,10 @@ file_list = sorted(file_list,
 
 print('Processing {} files'.format(len(file_list)))
 
+# Get the coordinates of the system by reading the first OMF file from
+# the list of files.
+# An OMF file has 6 columns: x y z mx my mz
+# We use Pandas to read this file and transform the data into a numpy array
 coordinates = pd.read_csv(basedir + file_list[0], comment='#',
                           header=None, delim_whitespace=True)
 coordinates = coordinates.as_matrix()[:, :3]
@@ -59,12 +64,19 @@ coordinates = coordinates.as_matrix()[:, :3]
 nx = len(np.unique(coordinates[:, 0]))
 ny = len(np.unique(coordinates[:, 1]))
 
+# Get the data from a line crossing the stripe at the middle of the sample, so
+# we get the spin components along y = y_middle
 mask = coordinates[:, 1] == coordinates[:, 1][nx * int(ny * 0.5)]
+# Create an array to store the data. Every row will contain the spin components
+# for a specific time step (file_list are the files for every time step)
 data_mx = np.zeros((len(file_list), len(mask[mask])))
 data_my = np.zeros((len(file_list), len(mask[mask])))
 data_mz = np.zeros((len(file_list), len(mask[mask])))
 
 # Static data -----------------------------------------------------------------
+
+# We will compute the spin components with respect to the saturated state
+# so we save the components of the relaxed state (before excitation) here:
 
 data_mx0 = np.zeros((len(file_list), len(mask[mask])))
 data_my0 = np.zeros((len(file_list), len(mask[mask])))
@@ -73,6 +85,7 @@ data_mz0 = np.zeros((len(file_list), len(mask[mask])))
 m = pd.read_csv(args.initial_state, comment='#',
                 header=None, delim_whitespace=True)
 
+# Spin components:
 data_mx0 = m.as_matrix()[:, 3][mask] / Ms
 data_my0 = m.as_matrix()[:, 4][mask] / Ms
 data_mz0 = m.as_matrix()[:, 5][mask] / Ms
@@ -82,8 +95,10 @@ data_mz0 = m.as_matrix()[:, 5][mask] / Ms
 # if os.path.exists('datafile.dat'):
 #     os.remove('datafile.dat')
 
+# For every time step file, extract the spins along a line at the middle of the
+# sample and substract the components from the saturated state. Save every time
+# step in different rows
 for i, _file in enumerate(file_list):
-    print(i)
 
     m = pd.read_csv(basedir + _file, comment='#',
                     header=None, delim_whitespace=True)
