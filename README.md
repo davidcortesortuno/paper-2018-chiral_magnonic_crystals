@@ -13,13 +13,8 @@ a periodic DMI, which can be obtained by patterning periodic arrays of heavy
 metal wires on top of the sample.
 
 The periodicity in the sample depends on three factors: the periodicity
-parameter `a`, the width of the ferromagnetic material `w` and the width of the
-heavy metal wires `w_D`.
-
-The simulations are specified for the limiting case `a=w` which is a
-ferromagnet with periodic heavy metal wires on top, which induce a periodic
-interfacial DMI. Accordingly, the system is solely determined by `a` and the
-heavy metal widths `w_D` (CHECK)
+parameter `a`, the width of the ferromagnetic material `w` and the width `w_D`
+of the heavy metal wires, which induce a periodic interfacial DMI.
 
 For example, for a system with `a=100 nm`, if we specify the heavy metal widths
 as `w_D=a/2`, we obtain the pattern:
@@ -33,7 +28,8 @@ We use OOMMF to simulate the magnonic waveguides.
 In our study, we fix the periodicity to a value of `a=100 nm` and we set
 different heavy metal widths `w_D` of `a`, `a/2`, `a/4` and `0` (these
 parameters can be changed from the OOMMF scripts in `sim` through the
-`a` and `w` parameters).
+`a` and `w` parameters). The width of the regions in the ferromagnet
+without DMI is `w=a - w_D`.
 
 The first step in the simulations is to relax the sample with a strong magnetic
 field of `B=0.25 T` to saturate the magnetisation along the `y` direction,
