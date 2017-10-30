@@ -10,3 +10,8 @@ run_all:
 	   	make run_simulations && \
 		make generate_data && \
 		make plot_squared && make plot_logs
+
+generate_sim_data:
+	@cd docker && \
+		make generate_data && \
+		make plot_squared && make plot_logs

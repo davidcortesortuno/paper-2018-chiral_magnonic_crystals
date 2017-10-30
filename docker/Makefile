@@ -24,22 +24,22 @@ run_simulations:
 		oommf /bin/bash -c "make"
 
 generate_data:
-	@echo "Generating spatio-temporal data to generate the spin wave spectra"
+	@echo "Generating spatio-temporal data for the spin wave spectra"
 	@echo "------------------------------------------------------"
-	@cd ../sim && \
+	@cd .. && \
 		docker run -t -v `pwd`:/io -u `id -u`:`id -g` \
-		oommf /bin/bash -c "make data"
+		oommf /bin/bash -c "cd sim && make data"
 
 plot_squared:
 	@echo "Plotting spectra with squared power scale"
 	@echo "------------------------------------------------------------"
-	@cd ../sim && \
+	@cd .. && \
 		docker run -t -v `pwd`:/io -u `id -u`:`id -g` \
-		oommf /bin/bash -c "make plots_squared"
+		oommf /bin/bash -c "cd sim && make plots_squared"
 
 plot_logs:
 	@echo "Plotting spectra with log power scale"
 	@echo "------------------------------------------------------------"
-	@cd ../sim && \
+	@cd .. && \
 		docker run -t -v `pwd`:/io -u `id -u`:`id -g` \
-		oommf /bin/bash -c "make plots_log"
+		oommf /bin/bash -c "cd sim && make plots_log"
