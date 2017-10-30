@@ -37,13 +37,14 @@ plots_squared:
 		python ../data_plot/OOMMF_process_data.py \
 		--omfs "omfs_w$${w}" \
 	   	--out_name "w$${w}" --vminf 1 --vmaxf 10 --ylim 0 30 \
-		--scale power2 --pdf_name "spectra_w$${w}_squared"; \
+		--scale power2 --plot_file_name "spectra_w$${w}_squared"; \
 	done
 	@for w in 25 50 75 100; do \
 		python ../data_plot/OOMMF_process_data.py \
 	   	--omfs "omfs_w$${w}" \
 	   	--out_name "w$${w}" --vminf 1 --vmaxf 200 --ylim 0 30 \
-		--scale power2 --pdf_name "spectra_w$${w}_squared"; \
+	   	--plot_file_format "pdf" \
+		--scale power2 --plot_file_name "spectra_w$${w}_squared"; \
 	done
 
 plots_log:
@@ -51,6 +52,7 @@ plots_log:
 		python ../data_plot/OOMMF_process_data.py \
 	   	--omfs "omfs_w$${w}" \
 	   	--out_name "w$${w}" --vminf 9 --vmaxf 1 --ylim 0 30 \
-		--pdf_name "spectra_w$${w}_log10" \
+		--plot_file_name "spectra_w$${w}_log10" \
+	   	--plot_file_format "pdf" \
 	   	--get_data "spectra_w$${w}_log10.dat"; \
 	done

@@ -62,8 +62,15 @@ parser.add_argument('--scale', help='Spectra scale: log10, power2',
 parser.add_argument('--get_data', help='Specify a file name to save the data',
                     )
 
-parser.add_argument('--pdf_name',
-                    help='Name of the PDF output. Default: out_name')
+parser.add_argument('--plot_file_name',
+                    help='Name of the output file. Default value is the '
+                    'out_name argument',
+                    )
+
+parser.add_argument('--plot_file_format',
+                    help='Extension of the output plot. Default: pdf',
+                    default='pdf'
+                    )
 
 # Parser arguments
 args = parser.parse_args()
@@ -185,8 +192,9 @@ plt.ylabel(r'$f$  [ GHz ]')
 
 xs = [0, -np.pi / 50, np.pi / 50, -np.pi / 100, np.pi / 100]
 
-if not args.pdf_name:
-    args.pdf_name = 'spectra' + out_name
+if not args.plot_file_name:
+    args.plot_file_name = 'spectra' + out_name
 
-plt.savefig(args.pdf_name + '.pdf', bbox_inches='tight')
+plt.savefig(args.plot_file_name + '.' + args.plot_file_format,
+            bbox_inches='tight')
 # plt.savefig('spectra.jpg')
