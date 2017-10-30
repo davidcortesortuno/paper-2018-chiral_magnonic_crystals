@@ -73,6 +73,12 @@ Consequently, we apply a 2D Fourier transform with a `hanning` window function.
 To plot the spectrum we use either a `squared` or `log` scale for the power
 intensity.
 
+A `log` scaled plot for the spectrum of the system with `w_d=50 nm` is shown
+below:
+
+![](images/spectra_w50_log10.png)
+
+
 # Docker
 
 If Docker is installed in your system, all the simulations and data processing 
