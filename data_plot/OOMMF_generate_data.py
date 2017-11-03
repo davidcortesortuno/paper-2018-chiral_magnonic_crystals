@@ -28,6 +28,11 @@ parser.add_argument('--Ms',
                     help='Saturation magnetisation value',
                     type=float, default=1.15e6)
 
+parser.add_argument('--skip_steps',
+                    help='Skip this number of files (starting from 0) from '
+                    'the omfs_path directory',
+                    type=int, default=0)
+
 # Parser arguments
 args = parser.parse_args()
 
@@ -49,7 +54,7 @@ if not basedir.endswith('/'):
 file_list = [_file for _file in listdir(basedir)
              if _file.startswith('SWDynamics-Oxs_TimeDriver')]
 file_list = sorted(file_list,
-                   key=key_f)
+                   key=key_f)[args.skip_steps:]
 
 print('Processing {} files'.format(len(file_list)))
 
@@ -77,10 +82,6 @@ data_mz = np.zeros((len(file_list), len(mask[mask])))
 
 # We will compute the spin components with respect to the saturated state
 # so we save the components of the relaxed state (before excitation) here:
-
-data_mx0 = np.zeros((len(file_list), len(mask[mask])))
-data_my0 = np.zeros((len(file_list), len(mask[mask])))
-data_mz0 = np.zeros((len(file_list), len(mask[mask])))
 
 m = pd.read_csv(args.initial_state, comment='#',
                 header=None, delim_whitespace=True)

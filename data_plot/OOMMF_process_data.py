@@ -32,10 +32,6 @@ parser.add_argument('--vmaxf',
                     help='Factor to scale the maximum value of the spectra',
                     default=1., type=float)
 
-parser.add_argument('--n_time_steps',
-                    help='Number of saved time steps from the simulations',
-                    default=8000, type=int)
-
 parser.add_argument('--time_step',
                     help='Simulation time step size',
                     default=0.5e-12, type=float)
@@ -102,12 +98,14 @@ file_list = sorted(file_list,
 mu0 = 4 * np.pi * 1e-7
 
 data = np.loadtxt('datafile_m' + args.m_i + out_name + '.dat')
+# Time steps according to the steps in data file
+n_time_steps = len(data)
 
 coordinates = np.loadtxt(basedir + file_list[0])[:, :3]
 nx = len(np.unique(coordinates[:, 0]))
 ny = len(np.unique(coordinates[:, 1]))
 
-times = np.arange(args.n_time_steps) * args.time_step
+times = np.arange(n_time_steps) * args.time_step
 x = coordinates[:, 0][:nx] / 1e-9
 
 # Apply windows to get a better Fourier spectrum
