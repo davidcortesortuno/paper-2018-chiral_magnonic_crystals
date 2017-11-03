@@ -32,7 +32,8 @@ Magnetic parameters of Py are:
 
 ## Simulations
 
-We use OOMMF to simulate the magnonic waveguides.
+We use OOMMF to simulate the magnonic waveguides and follow the methods from
+[2] to compute the spin wave dispersion relation.
 
 In our study, we fix the periodicity to a value of `a=100 nm` and we set
 different heavy metal widths `w_D` of `a`, `a/2`, `a/4` and `0` (these
@@ -61,7 +62,7 @@ exponentially grows damping towards the width edges as shown in:
 
 By setting the damping in this way, we can obtain clearer images of the
 spin wave spectrum of the system by avoiding reflection of the spin
-waves at the boundary. In our system, a significant noise comes from the
+waves at the boundary [3]. In our system, a significant noise comes from the
 width edges rather from the edges at the extremes of the long side of
 the stripe.
 
@@ -104,7 +105,8 @@ If you want to cite this repository you can do it using this bibtex entry:
 
 [] Paper
 
-[] Venkat et al., *Mesh Size and Damped Edge Effects in Micromagnetic Spin Wave
-Simulation*. Preprint at arXiv:1405.4615 (2014).
+[2] Venkat et al. *Proposal for a Standard Micromagnetic Problem: Spin Wave
+Dispersion in a Magnonic Waveguide*. IEEE Trans. Magn., 46, 1 (524-529). 2013.
 
-[]
+[3] Venkat et al. *Mesh Size and Damped Edge Effects in Micromagnetic Spin Wave
+Simulation*. Preprint at arXiv:1405.4615. 2014.
