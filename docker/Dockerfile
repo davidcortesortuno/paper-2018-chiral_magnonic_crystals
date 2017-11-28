@@ -9,7 +9,7 @@ RUN wget http://math.nist.gov/oommf/dist/oommf12b1_20170927.tar.gz
 RUN tar xvzf oommf12b1_20170927.tar.gz && rm oommf12b1_20170927.tar.gz
 WORKDIR /usr/local/oommf
 RUN ./oommf.tcl pimake
-ENV OOMMFTCL /usr/local/oommf/oommf/oommf.tcl
+ENV OOMMFTCL /usr/local/oommf/oommf.tcl
 
 # Create executable oommf script
 WORKDIR /usr/local/bin
