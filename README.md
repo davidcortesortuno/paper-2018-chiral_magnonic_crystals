@@ -21,7 +21,7 @@ as `w_D=a/2`, we obtain the pattern:
 
 ![](images/simulation_system_a100nm_w50nm.png)
 
-Magnetic parameters of Py are:
+Magnetic parameters of permalloy are:
 
 ```
     Ms = 0.658e6    MA/m
@@ -33,7 +33,7 @@ Magnetic parameters of Py are:
 ## Simulations
 
 We use OOMMF to simulate the magnonic waveguides and follow the methods from
-[2] to compute the spin wave dispersion relation.
+[1] to compute the spin wave dispersion relation.
 
 In our study, we fix the periodicity to a value of `a=100 nm` and we set
 different heavy metal widths `w_D` of `a`, `a/2`, `a/4` and `0` (these
@@ -62,7 +62,7 @@ exponentially grows damping towards the width edges as shown in:
 
 By setting the damping in this way, we can obtain clearer images of the
 spin wave spectrum of the system by avoiding reflection of the spin
-waves at the boundary [3]. In our system, a significant noise comes from the
+waves at the boundary [2]. In our system, a significant noise comes from the
 width edges rather from the edges at the extremes of the long side of
 the stripe.
 
@@ -95,18 +95,25 @@ the scripts in the `data_plot` folder.
 
 # Cite
 
-If you want to cite this repository you can do it using this bibtex entry:
+If you want to cite this repository you can refer to this bibtex entry:
 
 ```
-    Some citation
+@Misc{Cortes2018,
+  author       = {David Cort{\'e}s-Ortu{\~n}o and Hans Fangohr},
+  title        = {Data set for "Chiral Magnonics: Unique Spin-Wave Phenomena Induced by a Periodic Dzyaloshinskii-Moriya Interaction"},
+  howpublished = {Zenodo doi:10.5281/zenodo.1193279. Github: https://github.com/davidcortesortuno/paper-2018-chiral_magnonics},
+  month        = apr,
+  year         = {2018},
+  doi          = {10.5281/zenodo.1193279},
+  url          = {https://doi.org/10.5281/zenodo.1193279},
+}
+
 ```
 
 # References
 
-[] Paper
-
-[2] Venkat et al. *Proposal for a Standard Micromagnetic Problem: Spin Wave
+[1] Venkat et al. *Proposal for a Standard Micromagnetic Problem: Spin Wave
 Dispersion in a Magnonic Waveguide*. IEEE Trans. Magn., 46, 1 (524-529). 2013.
 
-[3] Venkat et al. *Mesh Size and Damped Edge Effects in Micromagnetic Spin Wave
+[2] Venkat et al. *Mesh Size and Damped Edge Effects in Micromagnetic Spin Wave
 Simulation*. Preprint at arXiv:1405.4615. 2014.
