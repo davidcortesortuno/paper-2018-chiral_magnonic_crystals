@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1193279.svg)](https://doi.org/10.5281/zenodo.1193279)
+
 # Chiral Magnonics: Micromagnetic Simulations
 
 This repository has all the necessary tools to reproduce the micromagnetic
