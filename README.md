@@ -93,6 +93,10 @@ This command builds a Docker container using the `joommf/oommf` image,
 runs the simulations in the `sim` folder and generates the data using
 the scripts in the `data_plot` folder.
 
+# Extensions
+
+Simulation scripts from this repository are specified with the original OOMMF extension for interfacial DMI. This module works for confined geometries. These simulations can be modified for the analysis of infinite films by using periodic boundaries with the `Oxs_PeriodicRectangularMesh` mesh class and the module provided in this [repository](https://github.com/joommf/oommf-extension-dmi-cnv), wich accepts periodic meshes. Results of systems with an *infinite* width should be equivalent to the figures shown in the paper associated to this Supplementary Material, which were simulated using the MuMax3 software with periodic boundaries along the y-direction of the waveguide.
+
 # Cite
 
 If you want to cite this repository you can refer to this bibtex entry:
