@@ -106,7 +106,7 @@ If you want to cite this repository you can refer to this bibtex entry:
 ```
 @Misc{Cortes2018,
   author       = {David Cort{\'e}s-Ortu{\~n}o and Hans Fangohr},
-  title        = {Data set for "Chiral Magnonics: Unique Spin-Wave Phenomena Induced by a Periodic Dzyaloshinskii-Moriya Interaction"},
+  title        = {Data set for ``Chiral Magnonics: Unique Spin-Wave Phenomena Induced by a Periodic Dzyaloshinskii-Moriya Interaction''},
   howpublished = {Zenodo doi:10.5281/zenodo.1193279. Github: https://github.com/davidcortesortuno/paper-2018-chiral_magnonics},
   month        = apr,
   year         = {2018},
