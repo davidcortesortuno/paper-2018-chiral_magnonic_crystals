@@ -108,7 +108,6 @@ If you want to cite this repository you can refer to this bibtex entry:
   author       = {David Cort{\'e}s-Ortu{\~n}o and Hans Fangohr},
   title        = {Data set for ``Chiral Magnonic Crystals: Unconventional Spin-Wave Phenomena Induced by a Periodic Dzyaloshinskii-Moriya Interaction''},
   howpublished = {Zenodo doi:10.5281/zenodo.1193279. Github: https://github.com/davidcortesortuno/paper-2018-chiral\_magnonics},
-  month        = apr,
   year         = {2018},
   doi          = {10.5281/zenodo.1193279},
   url          = {https://doi.org/10.5281/zenodo.1193279},
