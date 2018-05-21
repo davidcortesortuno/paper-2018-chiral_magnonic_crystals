@@ -1,6 +1,6 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1193279.svg)](https://doi.org/10.5281/zenodo.1193279)
 
-# Chiral Magnonics: Micromagnetic Simulations
+# Chiral Magnonic Crystals: Micromagnetic Simulations
 
 This repository has all the necessary tools to reproduce the micromagnetic
 simulations from the publication: **Chiral Magnonic Crystals: Unconventional Spin-Wave
