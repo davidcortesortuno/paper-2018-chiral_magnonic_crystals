@@ -3,10 +3,10 @@
 # Chiral Magnonics: Micromagnetic Simulations
 
 This repository has all the necessary tools to reproduce the micromagnetic
-simulations from the publication: **Chiral Magnonics: Unique Spin-Wave
+simulations from the publication: **Chiral Magnonics: Unconventional Spin-Wave
 Phenomena Induced by a Periodic Dzyaloshinskii-Moriya Interaction** from *R. A.
-Gallardo, D. Cortés-Ortuño, T. Schneider, A. Roldán-Molina, Fusheng Ma, J.
-Lindner, H. Fangohr and P. Landeros*.
+Gallardo, D. Cortés-Ortuño, T. Schneider, A. Roldán-Molina, F. Ma, R. E. Troncoso,
+K. Lenz, H. Fangohr, J. Lindner and P. Landeros*.
 
 ## System
 
